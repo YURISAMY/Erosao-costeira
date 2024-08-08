@@ -1,10 +1,8 @@
-
+import pandas as pd 
 import zipfile as zipfile 
-import pandas as pd
 
 for_concat = []
 
-import pandas as pd 
 with zipfile.ZipFile ('Documents/projetos/Bolsa/jupyternotebooks/postos.zip', 'r') as t:
    
     for arq in t.namelist():
