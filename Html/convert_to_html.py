@@ -3,7 +3,7 @@ import zipfile as zipfile
 
 for_concat = []
 
-with zipfile.ZipFile ('Documents/projetos/Bolsa/jupyternotebooks/postos.zip', 'r') as t:
+with zipfile.ZipFile ('../CSV/postos.zip', 'r') as t:
    
     for arq in t.namelist():
              
