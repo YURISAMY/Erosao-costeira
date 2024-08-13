@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: 
+  workflow_dispatch:  # permite rodar manualmente
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - name: Check out the repository
@@ -27,12 +29,12 @@ jobs:
     - name: Run Python script
       run: python Scripts_python/convert_to_JSON.py
 
-    - name: Commit and push
+    - name: Commit and Push changes
       env:
-          GITHUB_TOKEN: ${{ secrets.PUSH_BOT }}
+        GH_TOKEN: ${{ secrets.PUSH_BOT }}
       run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add CSV/registros_chuvas.json
-          git commit -m "Updated registros_chuvas.json with new data"
-          git push origin main
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add CSV/registros_chuvas.json
+        git commit -m "Update registros_chuvas.json in CSV folder"
+        git push https://x-access-token:${PUSH_BOT}@github.com/YURISAMY/Erosao-costeira.git main
