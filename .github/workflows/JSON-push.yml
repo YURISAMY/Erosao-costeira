@@ -1,0 +1,39 @@
+name: Generate and Push JSON File
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pandas
+      
+    - name: Run Python script
+      run: python Scripts_python/convert_to_JSON.py
+
+    - name: Move JSON to CSV folder
+      run: mv Scripts_python/registros_chuvas.json CSV/
+
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add CSV/registros_chuvas.json
+        git commit -m "Update registros_chuvas.json in CSV folder"
+        git push origin main
