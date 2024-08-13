@@ -29,7 +29,7 @@ jobs:
 
     - name: Commit and push
       env:
-          GITHUB_TOKEN: ${{ secrets.push_bot }}
+          GITHUB_TOKEN: ${{ secrets.PUSH_BOT }}
       run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
