@@ -27,9 +27,6 @@ jobs:
     - name: Run Python script
       run: python Scripts_python/convert_to_JSON.py
 
-    - name: Move JSON to CSV folder
-      run: mv Scripts_python/registros_chuvas.json CSV/
-
     - name: Commit and Push changes
       run: |
         git config --global user.name 'GitHub Actions'
