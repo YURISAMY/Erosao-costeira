@@ -27,12 +27,12 @@ jobs:
     - name: Run Python script
       run: python Scripts_python/convert_to_JSON.py
 
-    - name: Commit and Push changes
+    - name: Commit and push
       env:
-        push_bot: ${{ secrets.push_bot }}
+          GITHUB_TOKEN: ${{ secrets.push_bot }}
       run: |
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        git add CSV/registros_chuvas.json
-        git commit -m "Update registros_chuvas.json in CSV folder"
-        git push https://x-access-token:${push_bot}@github.com/YURISAMY/Erosao-costeira.git main
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add CSV/registros_chuvas.json
+          git commit -m "Updated registros_chuvas.json with new data"
+          git push origin main
