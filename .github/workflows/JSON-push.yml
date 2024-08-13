@@ -28,9 +28,11 @@ jobs:
       run: python Scripts_python/convert_to_JSON.py
 
     - name: Commit and Push changes
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
         git add CSV/registros_chuvas.json
         git commit -m "Update registros_chuvas.json in CSV folder"
-        git push origin main
+        git push https://x-access-token:${GH_TOKEN}@github.com/YURISAMY/Erosao-costeira.git main
